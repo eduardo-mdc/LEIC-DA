@@ -1,14 +1,18 @@
 // By: Gonçalo Leão
 
 #include "exercises.h"
+#include <iostream>
 
 bool changeMakingGreedy(unsigned int C[], unsigned int Stock[], unsigned int n, unsigned int T, unsigned int usedCoins[]) {
     //iterar moedas do final ao inicio
     for(int i = n-1; T > 0 && i>= 0; i--)
         if(Stock[i] > 0 && C[i] <= T){
             int num_moed = std::min(Stock[i],T/C[i]);
-            usedCoins[i] += num_moed;
+            usedCoins[i] = num_moed;
             T -= num_moed * C[i];
+        }
+        else{
+            usedCoins[i] = 0;
         }
     if(T > 0){
         return false;

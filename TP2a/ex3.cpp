@@ -1,8 +1,35 @@
 #include "exercises.h"
+#include <iostream>
+
+#define BREAK_VALUE 1000
+
+
+int recursiveChange(unsigned int C[], unsigned int Stock[], unsigned int n, unsigned int T, unsigned int usedCoins[], int Ci, int Nc){
+
+    //Casos Base
+    //Se chegou ao valor pretendido
+    if(T <= 0) return Nc;
+    //Se saiu fora do indice
+    if(Ci >= n) return BREAK_VALUE;
+    //Se moeda atual muito grande ou nao tem stock suficiente
+    if(Stock[Ci] <= 0 || C[Ci] > T) return recursiveChange(C,Stock,n,T,usedCoins,Ci+1,Nc);
+
+    Stock[Ci]--;
+    Nc++;
+    T -= C[Ci];
+
+    return std::min(recursiveChange(C,Stock,n,T,usedCoins,Ci,Nc),recursiveChange(C,Stock,n,T,usedCoins,Ci+1,Nc));
+}
+
 
 bool changeMakingBacktracking(unsigned int C[], unsigned int Stock[], unsigned int n, unsigned int T, unsigned int usedCoins[]) {
-    //TODO
-	return false;
+    for(int i = 0; i < n; i++){
+        usedCoins[i] = 0;
+    }
+    int numberCoins = recursiveChange(C,Stock,n,T,usedCoins,0,0);
+    std::cout << numberCoins << std::endl;
+    if(numberCoins != BREAK_VALUE) return true;
+    return false;
 }
 
 /// TESTS ///

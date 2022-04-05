@@ -2,7 +2,7 @@
 
 #include "exercises.h"
 
-bool sum3(unsigned int T, unsigned int nums[3]) {
+bool sum3_b(unsigned int T, unsigned int nums[3]) {
     int sum;
     for(int i = 1; i <= T-1; i++) {
         for (int j = 1; j <= T - 1; j++) {
@@ -20,7 +20,7 @@ bool sum3(unsigned int T, unsigned int nums[3]) {
     return false;
 }
 
-bool sum3_a(unsigned int T, unsigned int nums[3]) {
+bool sum3(unsigned int T, unsigned int nums[3]) {
     int sum;
     for(int i = 1; i <= T-1; i++) {
         for (int j = 1; j <= T - 1; j++) {
